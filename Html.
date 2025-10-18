@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For You — A Little Question 💌</title>
+  <style>
+    :root{
+      --bg: radial-gradient(circle at top, #1a1a2e, #0f0c29 60%, #000 100%);
+      --panel: rgba(255,255,255,0.08);
+      --accent:#ff66b2; --accent2:#5b7fff; --muted:#c4c4c7;
+      --glow: 0 0 25px rgba(255,102,178,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;margin:0;
+      font-family:"Poppins",system-ui,-apple-system,sans-serif;
+      background:var(--bg);
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;
+    }
+    .hearts{position:fixed;inset:0;overflow:hidden;z-index:0}
+    .hearts span{position:absolute;bottom:-10px;width:20px;height:20px;background:rgba(255,105,180,0.7);animation:floatUp 10s linear infinite;clip-path:polygon(50% 0%,61% 17%,98% 18%,68% 39%,79% 75%,50% 57%,21% 75%,32% 39%,2% 18%,39% 17%)}
+    @keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-110vh) scale(1.4);opacity:0}}
+    .stage{position:relative;width:min(90vw,800px);background:var(--panel);border-radius:20px;box-shadow:0 0 40px rgba(255,255,255,0.1);text-align:center;padding:40px 30px;backdrop-filter:blur(12px);z-index:1;animation:fadeIn 1.2s ease}
+    h1{font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;text-shadow:var(--glow)}
+    p.lead{color:var(--muted);margin-bottom:20px}
+    .letter{width:90px;height:90px;background:linear-gradient(145deg,#ff6fa3,#ff9fbf);border-radius:16px;display:grid;place-items:center;box-shadow:var(--glow);cursor:pointer;transition:transform .28s}
+    .letter:hover{transform:scale(1.06)}
+    .page{opacity:0;transform:translateY(20px);transition:all .55s ease;display:none}
+    .page.show{display:block;opacity:1;transform:translateY(0)}
+    .panel{background:rgba(255,255,255,0.12);border-radius:14px;padding:28px;box-shadow:inset 0 0 18px rgba(255,255,255,0.04)}
+    .btn{padding:12px 28px;border-radius:10px;border:none;cursor:pointer;font-weight:600;font-size:15px;transition:transform .2s, top .2s, left .2s;position:relative}
+    .btn:hover{transform:scale(1.04)}
+    .btn-love{background:linear-gradient(90deg,var(--accent2),var(--accent));color:#fff;box-shadow:var(--glow)}
+    .btn-no{background:linear-gradient(90deg,#ff4d4d,#ff9966);color:#fff;position:relative}
+    .final{font-size:28px;font-weight:800;text-shadow:var(--glow)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @media (max-width:520px){.stage{padding:22px}h1{font-size:22px}.btn{padding:10px 16px;font-size:14px}}
+    .conf-piece{position:fixed;top:50%;left:50%;width:8px;height:8px;border-radius:50%;pointer-events:none;opacity:0;animation:confburst 1s ease-out forwards}
+    @keyframes confburst{from{transform:translate(0,0) scale(0);opacity:1}to{transform:translate(var(--tx,0),var(--ty,0)) scale(1.3);opacity:0}}
+
+    /* 💞 Romantic Page 4 Styling 💞 */
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    #page-4 .romantic-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      background: linear-gradient(90deg,#ff99cc,#ffe5ec,#aabfff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 18px rgba(255,182,193,0.5);
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%,100% { text-shadow: 0 0 14px rgba(255,182,193,0.6); transform: scale(1); }
+      50% { text-shadow: 0 0 30px rgba(255,182,193,0.9); transform: scale(1.05); }
+    }
+    #page-4 .heart-bg {
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      z-index:-1;
+    }
+    #page-4 .heart-bg span{
+      position:absolute;
+      width:18px;height:18px;
+      background:rgba(255,192,203,0.35);
+      clip-path:polygon(50% 0%,61% 17%,98% 18%,68% 39%,79% 75%,50% 57%,21% 75%,32% 39%,2% 18%,39% 17%);
+      animation: floatUp 12s linear infinite;
+    }
+    #page-4 .buttons::before {
+      content:"";
+      position:absolute;
+      width:180px;
+      height:180px;
+      background:radial-gradient(circle,#ffb6c1 0%,transparent 70%);
+      opacity:0.15;
+      border-radius:50%;
+      top:-40px;
+      left:50%;
+      transform:translateX(-50%);
+      animation:pulse 4s infinite ease-in-out;
+      z-index:0;
+    }
+    @keyframes pulse {
+      0%,100%{transform:translateX(-50%) scale(1);opacity:0.15;}
+      50%{transform:translateX(-50%) scale(1.2);opacity:0.25;}
+    }
+  </style>
+</head>
+<body>
+  <iframe id="ytplayer" style="position:fixed;right:-9999px;width:1px;height:1px;border:0"
+    src="https://www.youtube.com/embed/nyuo9-OjNNg?autoplay=1&loop=1&playlist=nyuo9-OjNNg&rel=0&controls=0&modestbranding=1"
+    allow="autoplay; encrypted-media"
+    title="I Wanna Be Yours - Arctic Monkeys"></iframe>
+
+  <div class="hearts" aria-hidden="true">
+    <span style="left:5%;animation-delay:0s"></span>
+    <span style="left:25%;animation-delay:2s"></span>
+    <span style="left:45%;animation-delay:4s"></span>
+    <span style="left:65%;animation-delay:1s"></span>
+    <span style="left:85%;animation-delay:3s"></span>
+  </div>
+
+  <div class="stage" role="main" aria-label="Romantic proposal">
+    <h1 id="title">Click the Letter 💌</h1>
+    <p class="lead" id="subtitle">A little message for you awaits...</p>
+
+    <div id="page-1" class="page show">
+      <div class="letter" id="letterBtn" title="Open letter">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="4" width="20" height="16" rx="3" fill="#fff"/>
+          <path d="M3 6l9 7 9-7" stroke="#ff4d88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <small style="color:var(--muted)">Tap to open ❤️</small>
+    </div>
+
+    <div id="page-2" class="page">
+      <div class="panel">
+        <div style="font-size:38px">🦋</div>
+        <div style="font-weight:700;margin-top:10px">My Friend 💗</div>
+        <div class="sub" style="color:var(--muted)">You're glowing today ✨</div>
+      </div>
+    </div>
+
+    <div id="page-3" class="page">
+      <div class="panel">
+        <div style="font-size:40px">💬</div>
+        <div style="font-weight:700;margin-top:8px">I Want to Ask You Something 👾</div>
+        <div class="sub" style="color:var(--muted)">Promise you’ll answer honestly?</div>
+      </div>
+    </div>
+
+    <!-- 🌹 Romantic Page -->
+    <div id="page-4" class="page">
+      <div class="heart-bg" aria-hidden="true">
+        <span style="left:10%;animation-delay:1s"></span>
+        <span style="left:40%;animation-delay:3s"></span>
+        <span style="left:70%;animation-delay:5s"></span>
+        <span style="left:85%;animation-delay:2s"></span>
+      </div>
+      <div class="panel">
+        <svg width="88" height="88" viewBox="0 0 24 24">
+          <path d="M12 21s-8-4.5-8-10a6 6 0 0 1 12 0c0 5.5-8 10-8 10z"
+                fill="#ffd1d1" stroke="#ff6b8a" stroke-width="1.2"/>
+        </svg>
+        <div class="romantic-text" style="margin-top:10px;">Kela Khaoge ? 🍌</div>
+        <div class="buttons" style="margin-top:18px;position:relative;height:100px;">
+          <button class="btn btn-love" id="btnLove">neeche 🍌</button>
+          <button class="btn btn-no" id="btnNo">Mu me 👀</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-5" class="page">
+      <div class="panel">
+        <div style="font-size:48px">❤️</div>
+        <div class="final">Yar sharmao mt 🍌</div>
+        <div style="margin-top:10px;color:var(--muted)">Apna hi smjho yr 🙂</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pages = [1,2,3,4,5].map(n => document.getElementById('page-'+n));
+    function showPage(n){
+      pages.forEach((p,i)=>{
+        const is = i===n-1;
+        p.classList.toggle('show', is);
+        p.setAttribute('aria-hidden', (!is).toString());
+      });
+    }
+    showPage(1);
+
+    document.getElementById('letterBtn').onclick = () => {
+      showPage(2);
+      setTimeout(()=> showPage(3), 3000);
+      setTimeout(()=> showPage(4), 7000);
+      tryPlayYT();
+    };
+
+    const btnLove = document.getElementById('btnLove');
+    const btnNo = document.getElementById('btnNo');
+
+    btnNo.addEventListener('click', () => {
+      const parent = btnNo.parentElement;
+      const maxX = parent.offsetWidth - btnNo.offsetWidth;
+      const maxY = parent.offsetHeight - btnNo.offsetHeight;
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+      btnNo.style.position = 'absolute';
+      btnNo.style.left = newX + 'px';
+      btnNo.style.top = newY + 'px';
+    });
+
+    btnNo.addEventListener('mouseenter', () => {
+      const parent = btnNo.parentElement;
+      const maxX = parent.offsetWidth - btnNo.offsetWidth;
+      const maxY = parent.offsetHeight - btnNo.offsetHeight;
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+      btnNo.style.position = 'absolute';
+      btnNo.style.left = newX + 'px';
+      btnNo.style.top = newY + 'px';
+    });
+
+    btnLove.addEventListener('click', () => {
+      showPage(5);
+      burstConfetti(80);
+    });
+
+    function burstConfetti(count){
+      for(let i=0;i<count;i++){
+        const c = document.createElement('div');
+        c.className = 'conf-piece';
+        const tx = (Math.random()-0.5)*700;
+        const ty = (Math.random()-0.5)*500;
+        c.style.setProperty('--tx', tx + 'px');
+        c.style.setProperty('--ty', ty + 'px');
+        c.style.background = ['#ff66b2','#7ee7c7','#ffd166','#7aa2ff'][Math.floor(Math.random()*4)];
+        c.style.left = '50%';
+        c.style.top = '40%';
+        document.body.appendChild(c);
+        setTimeout(()=> c.remove(), 1400);
+      }
+    }
+
+    function tryPlayYT(){
+      const ifr = document.getElementById('ytplayer');
+      const src = ifr.src;
+      ifr.src = src;
+    }
+
+    document.getElementById('letterBtn').addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('letterBtn').click(); }
+    });
+  </script>
+</body>
+</html>
